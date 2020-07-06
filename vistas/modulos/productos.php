@@ -23,7 +23,7 @@
                 <table class="table table-bordered table-striped tablaProductos dt-responsive" widht="100%">
                     <thead>
                     <tr>
-                        <th style="10px">#</th>
+                        <th style="width: 10px;">#</th>
                         <th>Imagen</th>
                         <th>Codigo</th>
                         <th>Descripcion</th>
@@ -35,50 +35,11 @@
                         <th>Acciones</th>
                     </tr>
                     </thead>
-                    <!-- <tbody>
-                    <?php
-                    $item = null;
-                    $valor = null;
-                    $productos = ControladorProductos::ctrMostrarProductos($item, $valor);
                     
-                    foreach ($productos as $key => $value){
-                        echo '
-                        <tr>
-                        <td>'.($key+1).'</td>
-                        <td><img src="vistas/img/productos/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-                        <td>'.$value["codigo"].'</td>
-                        <td>'.$value["descripcion"].'</td>';
-                        $item = "id";
-                        $valor = $value["id_categoria"];
-                        
-                        $categoria = ControladorCategorias::ctrMostrarCategorias($item, $valor);
-                        
-                        echo '
-                        <td>'.$categoria["categoria"].'</td>
-                        <td>'.$value["stock"].'</td>
-                        <td>$'.$value["precio_compra"].'</td>
-                        <td>$'.$value["precio_venta"].'</td>
-                        <td>'.$value["fecha"].'</td>
-                        <td>
-                            <div class="btn-group">
-                                <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
-                                <button class="btn btn-danger"><i class="fa fa-times"></i></button>
-                            </div>
-                        </td>
-                    </tr>';
-                    }
-                    
-                    ?>
-                    
-                    
-                    </tbody> -->
                 </table>
             </div>
             <!-- /.box-body -->
-            <div class="box-footer">
-                Footer
-            </div>
-            <!-- /.box-footer-->
+
         </div>
         <!-- /.box -->
 
@@ -87,7 +48,7 @@
 </div>
 <!-- /.content-wrapper -->
 
-<!----------------------  MODAL AGREGAR PRODUCTO   --------------->
+<!-- ==========  MODAL AGREGAR PRODUCTO   ===================-->
 
 <div id="modalAgregarproducto" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -99,43 +60,53 @@
                 </div>
                 <div class="modal-body">
                     <div class="box-body">
-                        
-                        <!-- Ingresar Codigo --->
-                        
-                        <div class="form-group">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-code"></i></span>
-                                <input type="text" class="form-control input-lg" name="nuevoCodigo" placeholder="Ingresar codigo" required>
 
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Ingresar descripcion --->
-                    
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
-                            <input type="text" class="form-control input-lg" name="nuevoDescripcion" placeholder="Ingresar descripcion" required>
+                       <!--             SELECIONAR CATEGORIA          -->
 
-                        </div>
-                    </div>
-                    
-                    
-                    <!--             SELECIONAR CATEGORIA          --->
-                    <div class="form-group">
+                       <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-th"></i></span>
-                            <select class="form-control input-lg" name="nuevaCategoria" id="">
+                            <select class="form-control input-lg" id="nuevaCategoria" name="nuevaCategoria" required>
                                 <option value="">Seleccionar categoria</option>
-                                <option value="Taladros">Taladros</option>
-                                <option value="Partes">Partes</option>
-                                <option value="Equipos">Equipos</option>
+                                <?php
+                                    $item = null;
+                                    $valor = null;
+
+                                    $categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+
+                                    foreach($categorias as $key => $value){
+                                        echo'<option value="'.$value["id"].'">'.$value["categoria"].'</option>';
+                                    }
+
+
+                                ?>
+
                             </select>
 
                         </div>
                     </div>
+                        
+                        <!-- Ingresar Codigo -->
+                        
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-code"></i></span>
+                                <input type="text" class="form-control input-lg" id="nuevoCodigo" name="nuevoCodigo" placeholder="Ingresar codigo" readonly required>
 
-                    <!-- INGRESAR STOCK --->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Ingresar descripcion -->
+                    
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
+                            <input type="text" class="form-control input-lg" name="nuevaDescripcion" placeholder="Ingresar descripcion" required>
+
+                        </div>
+                    </div>
+
+                    <!-- INGRESAR STOCK -->
 
                     <div class="form-group">
                         <div class="input-group">
@@ -145,24 +116,24 @@
                         </div>
                     </div>
 
-                    <!-- INGRESAR PRECIO DE COMPRA   --->
+                    <!-- INGRESAR PRECIO DE COMPRA   -->
 
                     <div class="form-group row">
                         <div class="col-xs-6">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span>
-                                <input type="text" class="form-control input-lg" name="nuevoPrecioCompra" min="0" placeholder="Precio de compra" required>
+                                <input type="text" class="form-control input-lg" id="nuevoPrecioCompra" name="nuevoPrecioCompra" min="0" placeholder="Precio de compra" required>
     
                             </div>
                         </div>
-                    <!-- INGRESAR PRECIO DE VENTA   --->
+                    <!-- INGRESAR PRECIO DE VENTA   -->
                         <div class="col-xs-6">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
-                                <input type="text" class="form-control input-lg" name="nuevoPrecioVenta" min="0" placeholder="Precio de venta" required>
+                                <input type="text" class="form-control input-lg" id="nuevoPrecioVenta" name="nuevoPrecioVenta" min="0" placeholder="Precio de venta" required>
                             </div>
                             <br>
-                            <!-- checkbox para porcentaje-->
+                            <!-- checkbox para porcentaje         -->
                                 <div class="col-xs-6">
                                     <div class="form-group">
                                         <label>
@@ -182,7 +153,7 @@
                         </div>
                     </div>
                     
-                    <!-- Ingresar foto --->
+                    <!-- Ingresar foto -->
                     
                     <div class="form-group">
                         <div class="panel">Subir imagen</div>
@@ -190,11 +161,20 @@
                         <p class="help-block">Maximo 2 MB</p>
                         <img src="vistas/img/productos/default/anonymous.png" alt="" class="img-thumbnail" width="100px">
                     </div>
+                </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-info">Guardar producto</button>
                         <button type="button" class="btn btn-warning" data-dismiss="modal">Salir</button>
                     </div>
             </form>
+
+            <?php
+
+                $crearProducto = new ControladorProductos();
+                $crearProducto -> ctrCrearProducto();
+                
+            ?>
+
         </div>
     </div>
 </div>

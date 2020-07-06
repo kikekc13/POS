@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
+<<<<<<< HEAD
 -- Tiempo de generación: 10-08-2019 a las 20:33:57
+=======
+-- Tiempo de generación: 25-09-2019 a las 06:11:12
+>>>>>>> error al agregar productos
 -- Versión del servidor: 5.7.24
 -- Versión de PHP: 7.3.1
 

@@ -23,7 +23,7 @@
                 <table class="table table-bordered table-striped tablas dt-responsive">
                     <thead>
                     <tr>
-                        <th style="10px">#</th>
+                        <th style="width: 10px">#</th>
                         <th>Nombre</th>
                         <th>Usuario</th>
                         <th>Foto</th>
